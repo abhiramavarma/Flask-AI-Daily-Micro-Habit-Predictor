@@ -1,4 +1,4 @@
-from app import app, db
+from app import app
 from models import User, Habit, HabitLog
 from predictor import HabitPredictor
 import os
@@ -8,7 +8,7 @@ def test_database():
         print("=== Database Test ===")
         users = User.query.all()
         print(f"Total users: {len(users)}")
-        for user in users[:3]:  # Show first 3
+        for user in users[:3]:
             print(f"User: {user.username}, Habits: {len(user.habits)}")
 
         habits = Habit.query.filter_by(user_id=1).all()
@@ -26,7 +26,7 @@ def test_predictions():
         print("\n=== Prediction Test ===")
         predictor = HabitPredictor()
         habits = Habit.query.filter_by(user_id=1).all()
-        for habit in habits[:3]:  # Test first 3
+        for habit in habits[:3]:
             try:
                 risk = predictor.predict_risk(habit.id)
                 print(".1f")
