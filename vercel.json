@@ -1,19 +1,21 @@
 {
   "version": 2,
+  "name": "flask-ai-habit-predictor",
   "builds": [
     {
-      "src": "app.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "maxDuration": 30
-      }
+      "src": "wsgi.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/app.py"
+      "dest": "wsgi.py"
     }
-  ]
+  ],
+  "functions": {
+    "wsgi.py": {
+      "runtime": "python3.9"
+    }
+  }
 }
